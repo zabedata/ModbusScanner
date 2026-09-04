@@ -37,11 +37,16 @@ async def scan_network():
     subnet = f"{parts[0]}.{parts[1]}.{parts[2]}"
     
     ips_to_scan = [f"{subnet}.{i}" for i in range(1, 255)]
-    tasks = [check_port(ip, 502) for ip in ips_to_scan]
+    found_devices = []
     
-    results = await asyncio.gather(*tasks)
-    
-    found_devices = [ip for ip, is_open in results if is_open]
+    # Busca em lotes de 50 para evitar congestionamento de conexões simultâneas no roteador/CLP
+    chunk_size = 50
+    for i in range(0, len(ips_to_scan), chunk_size):
+        chunk = ips_to_scan[i:i + chunk_size]
+        tasks = [check_port(ip, 502, timeout=2.5) for ip in chunk]
+        results = await asyncio.gather(*tasks)
+        found_devices.extend([ip for ip, is_open in results if is_open])
+        
     return {"devices": found_devices, "local_ip": local_ip, "subnet": f"{subnet}.0/24"}
 
 @app.get("/")
