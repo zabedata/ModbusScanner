@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modbus Scanner</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Modbus Scanner</h1>
+            <p>Encontre dispositivos Modbus na sua rede local.</p>
+        </header>
+
+        <main>
+            <div class="controls">
+                <button id="scanBtn" class="btn primary">
+                    <span class="icon">🔍</span>
+                    <span class="text">Buscar na Rede</span>
+                </button>
+            </div>
+
+            <div class="scanner-visuals" id="scannerVisuals" style="display: none;">
+                <div class="radar">
+                    <div class="sweep"></div>
+                </div>
+                <p class="status-text">Varrendo a rede na porta 502...</p>
+            </div>
+
+            <div class="results" id="resultsContainer" style="display: none;">
+                <h2>Dispositivos Encontrados</h2>
+                <div class="info-bar" id="infoBar"></div>
+                <ul class="device-list" id="deviceList">
+                    <!-- Dispositivos serao inseridos aqui -->
+                </ul>
+            </div>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
