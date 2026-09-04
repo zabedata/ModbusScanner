@@ -8,7 +8,7 @@ import socket as sckt
 app = FastAPI(title="Modbus Scanner")
 
 def get_local_ip():
-    s = sckt.socket(sckt.AF_INET, sckt.AF_DGRAM)
+    s = sckt.socket(sckt.AF_INET, sckt.SOCK_DGRAM)
     try:
         s.connect(('10.255.255.255', 1))
         IP = s.getsockname()[0]
