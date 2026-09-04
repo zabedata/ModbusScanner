@@ -23,10 +23,13 @@
             </div>
 
             <div class="scanner-visuals" id="scannerVisuals" style="display: none;">
-                <div class="radar">
+                <div class="progress-container" style="width: 100%; max-width: 400px; margin: 20px auto; background: #1e293b; border-radius: 10px; overflow: hidden; border: 1px solid #334155;">
+                    <div id="progressBar" style="width: 0%; height: 20px; background: linear-gradient(90deg, #3b82f6, #60a5fa); transition: width 0.3s ease;"></div>
+                </div>
+                <p class="status-text" id="statusText">Iniciando varredura...</p>
+                <div class="radar" style="margin-top: 10px; transform: scale(0.5);">
                     <div class="sweep"></div>
                 </div>
-                <p class="status-text">Varrendo a rede na porta 502...</p>
             </div>
 
             <div class="results" id="resultsContainer" style="display: none;">
